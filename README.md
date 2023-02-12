@@ -31,5 +31,6 @@ pyinstaller unGSTfy.spec -y
 ```
 
 Use [Inno Setup](https://jrsoftware.org/isdl.php) for one single standalone application, if using multiple images and fonts and files etc.
+or, follow this [video](https://www.youtube.com/watch?v=p3tSLatmGvU)
 
 NB: see `~/.kivy\logs` if your application crashes for more info

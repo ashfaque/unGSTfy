@@ -112,6 +112,7 @@ Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\cv2\*"; DestDir: "
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\docutils\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\enchant\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\env\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\kivy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\kivy_install\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\dist\unGSTfy\numpy\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs

@@ -1,0 +1,24 @@
+Manager:
+    HomeScreen:
+    FirstScreen:
+
+# Calling HomeScreen class from tutorial7.py
+<HomeScreen>:
+    id: 1
+    name: 'Home'
+    # Label:
+    #     text: "Hello"
+    Button:
+        text: 'Goto FirstScreen'
+        on_release:
+            app.root.current = "First"    # name: of FirstScreen
+            root.manager.transition.direction = "left"
+
+<FirstScreen>:
+    id: 2
+    name: 'First'
+    Button:
+        text: 'Goto HomeScreen'
+        on_release:
+            app.root.current = "Home"
+            root.manager.transition.direction = "right"

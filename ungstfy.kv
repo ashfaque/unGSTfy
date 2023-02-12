@@ -1,0 +1,55 @@
+<MainWidget>:
+    cols: 2
+    Label:
+        id: amount_with_gst
+        text: "Enter amount with GST: "
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+    TextInput:
+        id: amount_with_gst_input
+        # text: ""
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+        input_filter: 'float'
+        hint_text:'Enter total amount with GST'
+        write_tab: False
+        multiline: False
+        on_text: app.process()
+
+    Label:
+        id: rate_of_gst
+        text: "Enter rate of GST: "
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+    TextInput:
+        id: rate_of_gst_input
+        # text: ""
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+        input_filter: 'float'
+        hint_text:'Enter rate of GST'
+        write_tab: False
+        multiline: False
+        on_text: app.process()
+
+    Label:
+        id: amount_without_gst
+        text: "Amount without GST: "
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+    TextInput:
+        id: amount_without_gst_output
+        # text: ""
+        font_size: 30
+        text_size: self.width, None
+        halign: 'left'
+        input_filter: 'float'
+        hint_text: 'Amount without GST'
+        write_tab: False
+        multiline: False
+        readonly: True

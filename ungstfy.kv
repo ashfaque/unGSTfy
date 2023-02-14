@@ -2,7 +2,7 @@
     cols: 2
     Label:
         id: amount_with_gst
-        text: "Enter amount with GST: "
+        text: "Total Amount with GST: "
         font_size: 30
         text_size: self.width, None
         halign: 'left'
@@ -13,14 +13,14 @@
         text_size: self.width, None
         halign: 'left'
         input_filter: 'float'
-        hint_text:'Enter total amount with GST'
+        hint_text:'Total Amount with GST'
         write_tab: False
         multiline: False
         on_text: app.process()
 
     Label:
         id: rate_of_gst
-        text: "Enter rate of GST: "
+        text: "GST %: "
         font_size: 30
         text_size: self.width, None
         halign: 'left'
@@ -31,14 +31,14 @@
         text_size: self.width, None
         halign: 'left'
         input_filter: 'float'
-        hint_text:'Enter rate of GST'
+        hint_text:'GST %'
         write_tab: False
         multiline: False
         on_text: app.process()
 
     Label:
         id: amount_without_gst
-        text: "Amount without GST: "
+        text: "Taxable Value: "
         font_size: 30
         text_size: self.width, None
         halign: 'left'
@@ -49,7 +49,7 @@
         text_size: self.width, None
         halign: 'left'
         input_filter: 'float'
-        hint_text: 'Amount without GST'
+        hint_text: 'Taxable Value'
         write_tab: False
         multiline: False
         readonly: True

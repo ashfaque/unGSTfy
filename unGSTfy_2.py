@@ -209,13 +209,16 @@ class unGSTfyApp(App):
 
     def first_screen_process(self):
         import re
-        pattern = re.compile(r'[0-9]+')
+        pattern = re.compile(r'[0-9.]+')
 
         amount_with_gst_input_str = self.root.get_screen('firstscreen').ids.amount_with_gst_input.text
         rate_of_gst_input_str = self.root.get_screen('firstscreen').ids.rate_of_gst_input.text
 
-        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else 0.0
-        rate_of_gst = rate_of_gst_input_str if rate_of_gst_input_str and re.fullmatch(pattern, rate_of_gst_input_str) else 0.0
+        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else '0.0'
+        rate_of_gst = rate_of_gst_input_str if rate_of_gst_input_str and re.fullmatch(pattern, rate_of_gst_input_str) else '0.0'
+
+        amount_with_gst = amount_with_gst if amount_with_gst[0] != '.' else '0'+amount_with_gst
+        rate_of_gst = rate_of_gst if rate_of_gst[0] != '.' else '0'+rate_of_gst
 
         amount_without_gst = (100 * float(amount_with_gst)) / (100 + float(rate_of_gst))
 
@@ -223,13 +226,16 @@ class unGSTfyApp(App):
 
     def second_screen_process(self):
         import re
-        pattern = re.compile(r'[0-9]+')
+        pattern = re.compile(r'[0-9.]+')
 
         amount_with_gst_input_str = self.root.get_screen('secondscreen').ids.amount_with_gst_input.text
         amount_without_gst_input_str = self.root.get_screen('secondscreen').ids.amount_without_gst_input.text
 
-        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else 0.0
-        amount_without_gst = amount_without_gst_input_str if amount_without_gst_input_str and re.fullmatch(pattern, amount_without_gst_input_str) else 0.0
+        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else '0.0'
+        amount_without_gst = amount_without_gst_input_str if amount_without_gst_input_str and re.fullmatch(pattern, amount_without_gst_input_str) else '0.0'
+
+        amount_with_gst = amount_with_gst if amount_with_gst[0] != '.' else '0'+amount_with_gst
+        amount_without_gst = amount_without_gst if amount_without_gst[0] != '.' else '0'+amount_without_gst
 
         rate_of_gst = ((float(amount_with_gst) / float(amount_without_gst)) - 1) * 100 if float(amount_with_gst) != 0.0 and float(amount_without_gst) != 0.0 else 0.0
 

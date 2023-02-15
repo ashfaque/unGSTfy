@@ -13,11 +13,11 @@ python -m pip install "kivy[base]" kivy_examples
 ```
 # https://www.youtube.com/watch?app=desktop&v=cewc02KuHoo
 
-pyinstaller --noconfirm --onefile --windowed --icon "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\gst_logo.ico" --name "unGSTfy" "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\unGSTfy.py" -w
+pip install --no-cache-dir opencv-python, pyenchant
+
+pyinstaller --noconfirm --onefile --windowed --icon "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\gst_logo.ico" --name "unGSTfy" "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\unGSTfy.py"
 
 or,
-
-pip install --no-cache-dir opencv-python, pyenchant
 
 pyinstaller --icon "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\gst_logo.ico" --name "unGSTfy" "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\unGSTfy.py" -w
 
@@ -26,6 +26,8 @@ pyinstaller --icon "E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\gst_logo.ico" -
     a.datas += [(r'Code\ungstfy.kv',r'E:\NO_BACKUP\DjangoProjects\unGSTfy\bld\ungstfy.kv','DATA')]    # Insert this between `pyz = ` and `exe = `.
     , Tree('E:\\NO_BACKUP\\DjangoProjects\\unGSTfy\\bld\\'),    # Add this beside `pyz` of `coll = COLLECT(`
     *[Tree(p) for p in (sdl2.dep_bins + glew.dep_bins)],    # Add this just after, `a.datas` of `coll = COLLECT(`
+
+# Delete dirs named, build and dist.
 
 pyinstaller unGSTfy.spec -y
 ```

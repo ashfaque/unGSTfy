@@ -21,10 +21,10 @@ Manager:
         cols: 2
         Label:
             id: amount_with_gst
-            text: "Total Amount with GST: "
+            text: "Total Amount with GST"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: amount_with_gst_input
             # text: ""
@@ -39,10 +39,10 @@ Manager:
 
         Label:
             id: rate_of_gst
-            text: "GST %: "
+            text: "GST %"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: rate_of_gst_input
             # text: ""
@@ -57,10 +57,10 @@ Manager:
 
         Label:
             id: amount_without_gst
-            text: "Taxable Value: "
+            text: "Taxable Value"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: amount_without_gst_output
             # text: ""
@@ -71,6 +71,7 @@ Manager:
             hint_text: 'Taxable Value'
             write_tab: False
             multiline: False
+            background_color: (0,1,0,1)
             readonly: True
 
         Label:
@@ -82,6 +83,7 @@ Manager:
         Button:
             text: '->'
             font_size: 50
+            background_color: (1,0,0,1)
             on_release:
                 app.root.current = "secondscreen"    # name: of SecondScreen
                 root.manager.transition.direction = "left"
@@ -93,10 +95,10 @@ Manager:
         cols: 2
         Label:
             id: amount_with_gst
-            text: "Total Amount with GST: "
+            text: "Total Amount with GST"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: amount_with_gst_input
             # text: ""
@@ -111,10 +113,10 @@ Manager:
 
         Label:
             id: amount_without_gst
-            text: "Taxable Value: "
+            text: "Taxable Value"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: amount_without_gst_input
             # text: ""
@@ -129,10 +131,10 @@ Manager:
 
         Label:
             id: rate_of_gst
-            text: "GST %: "
+            text: "GST %"
             font_size: 30
             text_size: self.width, None
-            halign: 'left'
+            halign: 'center'
         TextInput:
             id: rate_of_gst_output
             # text: ""
@@ -143,11 +145,13 @@ Manager:
             hint_text:'GST %'
             write_tab: False
             multiline: False
+            background_color: (0,1,0,1)
             readonly: True
 
         Button:
             text: '<-'
             font_size: 50
+            background_color: (1,0,0,1)
             on_release:
                 app.root.current = "firstscreen"    # name: of FirstScreen
                 root.manager.transition.direction = "right"
@@ -204,18 +208,32 @@ class unGSTfyApp(App):
         return bldr
 
     def first_screen_process(self):
-        amount_with_gst = self.root.get_screen('firstscreen').ids.amount_with_gst_input.text if self.root.get_screen('firstscreen').ids.amount_with_gst_input.text else 0.0
-        rate_of_gst = self.root.get_screen('firstscreen').ids.rate_of_gst_input.text if self.root.get_screen('firstscreen').ids.rate_of_gst_input.text else 0.0
+        import re
+        pattern = re.compile(r'[0-9]+')
+
+        amount_with_gst_input_str = self.root.get_screen('firstscreen').ids.amount_with_gst_input.text
+        rate_of_gst_input_str = self.root.get_screen('firstscreen').ids.rate_of_gst_input.text
+
+        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else 0.0
+        rate_of_gst = rate_of_gst_input_str if rate_of_gst_input_str and re.fullmatch(pattern, rate_of_gst_input_str) else 0.0
 
         amount_without_gst = (100 * float(amount_with_gst)) / (100 + float(rate_of_gst))
-        self.root.get_screen('firstscreen').ids.amount_without_gst_output.text = str(amount_without_gst)
+
+        self.root.get_screen('firstscreen').ids.amount_without_gst_output.text = str(round(amount_without_gst, 10))
 
     def second_screen_process(self):
-        amount_with_gst = self.root.get_screen('secondscreen').ids.amount_with_gst_input.text if self.root.get_screen('secondscreen').ids.amount_with_gst_input.text else 0.0
-        amount_without_gst = self.root.get_screen('secondscreen').ids.amount_without_gst_input.text if self.root.get_screen('secondscreen').ids.amount_without_gst_input.text else 0.0
+        import re
+        pattern = re.compile(r'[0-9]+')
+
+        amount_with_gst_input_str = self.root.get_screen('secondscreen').ids.amount_with_gst_input.text
+        amount_without_gst_input_str = self.root.get_screen('secondscreen').ids.amount_without_gst_input.text
+
+        amount_with_gst = amount_with_gst_input_str if amount_with_gst_input_str and re.fullmatch(pattern, amount_with_gst_input_str) else 0.0
+        amount_without_gst = amount_without_gst_input_str if amount_without_gst_input_str and re.fullmatch(pattern, amount_without_gst_input_str) else 0.0
 
         rate_of_gst = ((float(amount_with_gst) / float(amount_without_gst)) - 1) * 100 if float(amount_with_gst) != 0.0 and float(amount_without_gst) != 0.0 else 0.0
-        self.root.get_screen('secondscreen').ids.rate_of_gst_output.text = str(rate_of_gst)
+
+        self.root.get_screen('secondscreen').ids.rate_of_gst_output.text = str(round(rate_of_gst, 10))
 
 if __name__=='__main__':
     unGSTfyApp().run()
